@@ -17,18 +17,6 @@ if [ $hour -lt 12 ]
 		fi
 		echo -n  "Good Morning !!! "
 		echo "Make The Best day in your life"
-		
-		echo "Have you made today's plan ?  "
-		read x
-		if [[ "$x" != "y" ]]
-			then
-			{
-				echo "My Todays Work :-\n" < todo.txt	
-				vim todo.txt
-			}
-		else
-			echo "Good Carry On"
-		fi
 	}	
 elif [ $hour -lt 16 ]
 	then 
@@ -65,23 +53,33 @@ fi
 echo ""
 echo $(date)
 
-#sudo su
-#sudo mount /dev/sda1 /media/pradeep
-sudo mkdir /media/pradeep/Windows
-sudo mount /dev/sda2 /media/pradeep/Windows
-#df -H
-sudo mkdir /media/pradeep/"Technical Stuffs"
-sudo mount /dev/sda3 /media/pradeep/"Technical Stuffs"
-#df -H
-sudo mkdir /media/pradeep/Raja
-sudo mount /dev/sda5 /media/pradeep/Raja
-#df -H
-sudo mkdir /media/pradeep/Entertainment
-sudo mount /dev/sda6 /media/pradeep/Entertainment
-#df -H
-#sudo mount /dev/sdb1 /media/pradeep
-# To change Wallpaper
+echo -n "\nWanna have some music ? "
+read x
+if [ "$x" == "y" ]
+        then
+        {
+                gnome-terminal -e "clementine -p"
+        }
+fi
+echo -n "\nHave you planned what to do now ? "
+read x
+if [ "$x" != "y" ]
+	then
+        {
+                vim "./log_files/2014/$(date +'%d-%m-%y').txt"
+        }
+ else
+	{
+		echo "Here's What You Planned :- \n"
+       		cat $(date +'%d-%m-%y').txt
+	}
+ fi
 
-# gsettings set org.gnome.desktop.background picture-uri file:///home/# serrano/Pictures/y.jpg
+
+sudo mount /dev/sda2 /media/pradeep/Windows
+sudo mount /dev/sda3 /media/pradeep/"Technical Stuffs"
+sudo mount /dev/sda5 /media/pradeep/Raja
+sudo mount /dev/sda6 /media/pradeep/Entertainment
+
 
 read a 
